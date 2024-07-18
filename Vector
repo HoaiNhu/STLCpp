@@ -27,3 +27,14 @@ int main() {
 }
 
 ---------------------------------------
+//Hàm nhập n số nguyên 
+vector<int> initializeVector(int n)
+{
+	vector<int> a;
+	
+    for(int i = 1; i <= n; i++)
+    {
+        a.push_back(i);
+    }
+	return a;
+}
