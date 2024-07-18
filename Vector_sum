@@ -1,0 +1,12 @@
+//Tổng các phần tử trong vector
+
+int sumOfVector(vector<int> v)
+{
+	int res = 0;
+	for (int i = 0; i < v.size(); i++)
+	{
+		res += v[i]; //hoặc res += v.at(i);
+	}
+	
+	return res;
+}
