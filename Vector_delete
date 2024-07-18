@@ -32,3 +32,84 @@ std::vector<int> removeLastElement(std::vector<int> v)
     v.pop_back();
     return v;
 }
+
+----------------------------------------------------------------
+Để xóa các phần tử trong vector bạn có thể dùng hàm erase(first, last). Trong đó first và last là 2 iterator. Ví dụ:
+
+Để xóa 2 phần tử đầu tiên trong vector bạn có thể làm như sau:
+
+v.erase(v.begin(), v.begin() + 2);
+Để xóa tất cả các phần tử có chỉ số từ l tới r bạn làm như sau:
+
+v.erase(l, r + 1);
+Để xóa 3 phần tử cuối cùng trong vector bạn có thể làm như sau:
+
+v.erase(v.end() - 3, v.end());
+Ví dụ tổng quan về hàm erase():
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+
+int main() {
+    vector<int> v;
+    for (int i = 1; i <= 10; i++) {
+        v.push_back(i); 
+    }
+    
+    // Xóa 2 phần tử đầu
+    v.erase(v.begin(), v.begin() + 2); // 3 4 5 6 7 8 9 10
+    // Xóa 2 phần tử cuối
+    v.erase(v.end() - 2, v.end()); // 3 4 5 6 7 8
+    // Xóa các phần tử có chỉ số từ 2 tới 4
+    // Lưu ý là v.begin() + 5 chứ không phải v.begin() + 4
+    v.erase(v.begin() + 2, v.begin() + 5); // 3 4 8
+
+    for (auto x : v) {
+        cout << x << " ";
+    }
+
+    return 0;
+}
+Kết quả khi chạy chương trình:
+
+3 4 8
+
+Trong C++, hàm erase() được sử dụng để xóa một hoặc nhiều phần tử từ vector. Có hai cách sử dụng erase() trong vector:
+
+Xóa một phần tử tại vị trí cụ thể:
+
+vector<int> v = {1, 2, 3, 4, 5};
+v.erase(v.begin() + index);
+
+Trong đó index là vị trí của phần tử muốn xóa trong vector. Vị trí đầu tiên trong vector có chỉ số là 0. Ví dụ, v.erase(v.begin() + 2) sẽ xóa phần tử có chỉ số 2 (giá trị 3) khỏi vector v.
+
+Xóa một phần tử dựa trên giá trị:
+
+vector<int> v = {1, 2, 3, 4, 5};
+auto it = find(v.begin(), v.end(), value);
+if (it != v.end()) {
+v.erase(it);
+}
+
+Trong đó value là giá trị của phần tử muốn xóa trong vector. Hàm find() được sử dụng để tìm vị trí của phần tử có giá trị value. Nếu phần tử được tìm thấy (it != v.end()), thì erase() sẽ xóa phần tử đó khỏi vector v.
+
+Xóa một dải các phần tử:
+
+vector<int> v = {1, 2, 3, 4, 5};
+v.erase(v.begin() + start, v.begin() + end);
+
+Trong đó start là vị trí bắt đầu của dải phần tử muốn xóa và end là vị trí kết thúc (không bao gồm) của dải phần tử muốn xóa. Các phần tử trong khoảng [start, end) sẽ bị xóa khỏi vector v. Ví dụ, v.erase(v.begin() + 2, v.begin() + 4) sẽ xóa các phần tử có chỉ số 2 và 3 (giá trị 3 và 4) khỏi vector v.
+
+Lưu ý rằng sau khi xóa phần tử, các phần tử còn lại trong vector sẽ được dịch chuyển để điền vào khoảng trống
+
+----------------
+//Xóa 1 dãy phần tử
+std::vector<int> removeElements(std::vector<int> v, int l, int r)
+{
+    v.erase(v.begin() + l, v.begin() + r + 1);
+
+    return v;
+}
