@@ -1,0 +1,48 @@
+Để thay đổi kích thước của vector v về n, bạn có thể sử dụng hàm v.resize(n). Nếu n lớn hơn kích thước hiện tại của vector thì vector sẽ tự động thêm vào các phần tử có giá trị bằng 0 giống trong ví dụ sau:
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    vector<int> v;
+    v.push_back(1);
+    v.push_back(2);
+    v.push_back(3);
+    v.resize(5);
+    for (auto x : v) {
+        cout << x << " ";
+    }
+    return 0;
+}
+
+Bạn cũng có thể sử dụng hàm resize() để khởi tạo giá trị cho các phần tử trong vector giống như sau:
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    vector<int> v;
+    // Khởi tạo vector với 3 phần tử, các phần tử có giá trị là 5
+    v.resize(3, 5);
+    for (auto x : v) {
+        cout << x << " ";
+    }
+    return 0;
+}
+Kết quả khi chạy chương trình:
+
+5 5 5
+
+-----------------------------
+//Hàm resize
+std::vector<int> resizeVector(std::vector<int> v, int n)
+{
+    
+    v.resize(n);
+    return v;
+    
+}
