@@ -10,3 +10,10 @@ int sumOfVector(vector<int> v)
 	
 	return res;
 }
+
+----------------------
+có thể bạn chưa biết là c++ có hàm tính tổng accumulate nằm trong thư viện algorithm
+int sumOfVector(vector<int> v)
+{
+return accumulate(v.begin(), v.end(), 0);
+}
