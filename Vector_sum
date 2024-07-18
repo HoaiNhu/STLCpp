@@ -116,3 +116,11 @@ int sumOfOddElements(vector<int> v)
     }
     return result;
 }
+--------------------------------------------------
+//Để lấy ra phần tử đầu tiên trong vector v bạn có thể dùng v[0] hoặc dùng hàm v.front().
+//Để lấy ra phần tử cuối cùng trong vector v bạn có thể dùng v[v.size() - 1] hoặc dùng hàm v.back().
+
+int sumOfFirstAndLastElement(std::vector<int> v)
+{
+    return v.front() + v.back();
+}
