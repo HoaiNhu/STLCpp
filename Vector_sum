@@ -17,3 +17,102 @@ int sumOfVector(vector<int> v)
 {
 return accumulate(v.begin(), v.end(), 0);
 }
+
+
+-----------------------------------------------------
+Iterator trong C++ là đối tượng được dùng để duyệt qua các phần tử trong các cấu trúc dữ liệu như vector, map, set, list, ... bạn cũng có thể hiểu nó giống như 1 con trỏ mà trỏ tới các phần tử trong các cấu trúc dữ liệu này. Ví dụ về sử dụng iterator để duyệt qua các phẩn tử trong vector:
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    // Khai báo vector
+    vector<int> v;
+    v.push_back(1);
+    v.push_back(2);
+    v.push_back(3); 
+
+    // Khai báo iterator
+    vector<int>::iterator it;
+
+    // Sử dụng iterator để duyệt vector
+    for (it = v.begin(); it != v.end(); it++) {
+        cout << *it << " ";
+    }
+
+    return 0;
+}
+
+Trong đó:
+
+it = v.begin(): cho biến it trỏ tới phần tử đầu tiên trong vector
+it != v.end(): kiểm tra xem biến it đã trỏ qua phần tử cuối cùng trong vector hay chưa. Bạn có thể hiểu v.end() là phần tử mà đứng sau phần tử cuối cùng trong vector.
+it++: cho biến it trỏ tới phần tử tiếp theo trong vector.
+*it: lấy ra giá trị của phần tử mà biến it đang trỏ tới, bạn cũng có thể dùng *it để gán giá trị cho các phần tử trong vector (ví dụ: *it = 0).
+Nếu khó hình dung thì bạn có thể xem ví dụ đơn giản về cách mà iterator được cài đặt như bên dưới:
+
+#include <iostream>
+
+using namespace std;
+
+class MyVector {
+private:
+    int data[3] = { 1, 2, 3 };
+public:
+    int* begin() {
+        return data;
+    }
+    int* end() {
+        // data + 3 là phần tử tử đứng sau phần tử cuối cùng trong mảng data
+        return data + 3;
+    }
+};
+
+
+int main() {
+    // Bạn có thể hình dung p giống như biến iterator
+    int* p;
+    MyVector v;
+    for (p = v.begin(); p != v.end(); p++) {
+        cout << *p << " ";
+    }
+    return 0;
+}
+
+Với các kiểu dữ liệu khác như vector<string>, vector<double> thì bạn cũng có thể sử dụng iterator để duyệt giống như sau:
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    vector<string> v;
+    v.push_back("Welcome");
+    v.push_back("to");
+    v.push_back("Codelearn.io!");
+
+    vector<string>::iterator it;
+
+    for (it = v.begin(); it != v.end(); it++) {
+        cout << *it << " ";
+    }
+
+    return 0;
+}
+
+--------
+//////////////////
+//Tổng dùng iterator
+int sumOfOddElements(vector<int> v)
+{
+    int result = 0;
+    vector<int>::iterator it;
+    for (it = v.begin(); it != v.end(); it++) {
+        if(*it % 2 != 0)
+            result += *it;
+    }
+    return result;
+}
