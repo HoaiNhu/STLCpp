@@ -1,0 +1,62 @@
+List được thực hiện như danh sách nối kép (doubly-linked list). Mỗi phần tử trong danh sách nối kép có liên kết đến một phần tử trước đó và một phần tử sau nó.
+
+Do đó, list có ưu điểm là chèn và loại bỏ phần tử ở bất cứ vị trí nào trong container nếu biết được interator trỏ đến phần tử đó, (với độ phức tạp là O(1)). Nếu chưa biết interator của phần tử cần xóa hoặc ở vị trí cần chèn thì có thể tìm iterator đó thông qua begin() hoặc end().
+
+Lưu ý: end() không phải là iterator trỏ tới phần tử cuối cùng mà trỏ tới sau phần tử cuối cùng.
+
+Điểm yếu của list là khả năng truy cập tới phần tử, nó không thể truy xuất A[0] hay A[3] được mà phải thông qua vị trí đầu hoặc cuối của list. ( với độ phức tạp là O(n)).
+
+Khai báo thư viện:
+
+#include<list>
+
+Khai báo list rỗng:
+
+	list<kiểu_dữ_liệu> tên_list;
+	// ví dụ list<int> a;
+Khai báo list khi biết trước size của nó:
+
+	list<kiểu_dữ_liệu> tên_list(Size);
+	//ví dụ list<int> a(5); a =[0,0,0,0,0]
+Khai báo list khi biết trước size và giá trị khởi tạo:
+
+	list<kiểu_dữ_liệu> tên_list(Size,value);
+	//ví dụ list<int> a(3,2); a =[2,2,2]
+Duyệt list:
+
+Như đã nói ở trên, trong list không dễ dàng truy xuất các phần tử như ở vector hay mảng một chiều.
+
+Khi duyệt các phần tử trong list chúng ta phải làm quen với 1 kiểu dữ liệu là iterator, hiểu đơn giản thì đây là một con trỏ.
+
+Ta cũng cần chú ý là 2 phương thức là begin() và end(), hai phương thức này sẽ trả về con trỏ của phần tử thứ nhất và con trỏ ở sau phần tử cuối cùng.
+
+Để duyệt list theo chiều thuận (từ trái qua phải) ta làm như sau:
+
+for (list<int>::iterator it = a.begin(); it !=a.end(); it++)
+hoặc
+
+for (list<int>::const_iterator it = a.cbegin(); it !=a.cend(); it++)
+Cách duyệt phía dưới cũng giống cách trên, nhưng với cách dưới, bạn không thể thay đổi giá trị mà con trỏ đang trỏ đến (Không thể gán *it=...).
+
+Để duyệt list theo chiều nghịch (từ phải qua trái) ta làm như sau:
+
+for (list<int>::reverse_iterator it = a.rbegin(); it != a.rend(); it++)
+----------------------------------------
+//Hàm nhập list từ 1-n
+list<int> initList(int n)
+{
+	list<int> a;
+    for(int i  = 1; i <= n; i++)
+    {
+        a.push_back(i);
+    }
+    return a;
+    
+}
+
+vector<int> verifyFunction(int n)
+{
+	list<int> lst = initList(n);
+	vector<int> res(lst.begin(), lst.end());
+	return res;
+}
