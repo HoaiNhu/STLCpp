@@ -1,0 +1,28 @@
+Nếu như hàm push_back() dùng để thêm một phần tử và cuối vector, thì hàm pop_back() (có độ phức tạp là O(1)) sẽ dùng để xóa phần tử cuối cùng trong vector.
+
+Nếu Nếu như hàm push_front() dùng để thêm một phần tử và đầu vector, thì hàm pop_front() (có độ phức tạp là O(1)) sẽ dùng để xóa phần tử đầu tiên trong vector.
+
+Ví dụ:
+
+	//a = [1,2,3,4,5]
+	a.pop_back();	// a = [1,2,3,4]
+	a.pop_back();   // a = [1,2,3]
+	a.pop_front();   // a = [2,3]
+	a.pop_front();   // a = [3]
+
+-----------------------------------------------------------------
+//Hàm xóa ptu đầu tiên và ptu cuối cùng
+
+list<int> deleteFrontBack(list<int> l) 
+{
+    l.pop_back();
+    l.pop_front();
+    return l;
+}
+
+vector<int> verifyFunction(vector<int> v) {
+	list<int> l(v.begin(), v.end());
+	l = deleteFrontBack(l);
+	vector<int> ans(l.begin(), l.end());
+	return ans;
+}
