@@ -18,3 +18,22 @@ int verifyFunction(vector<int> v)
 	list<int> l(v.begin(), v.end());
 	return sumOfFirstAndLastElement(l);
 }
+
+----------------------------------------------------------------------------
+//Tổng các phần tử trong list
+int sumOfAllElements(list<int> linkedList)
+{
+	int sum = 0;
+    for(list<int>:: iterator i = linkedList.begin(); i != linkedList.end(); i++) //or for(auto x : linkedList) 
+    {
+        sum += *i;
+    }
+    return sum;
+
+}
+
+int verifyFunction(vector<int> v)
+{
+	list<int> l(v.begin(), v.end());
+	return sumOfAllElements(l);
+}
