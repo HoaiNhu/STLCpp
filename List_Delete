@@ -28,3 +28,19 @@ vector<int> verifyFunction(vector<int> v) {
 }
 -------------------------------------------------------------
 //Hàm xóa từ số thứ first đến số thứ last
+list<int> changeValue(list<int> l, int first, int last) {
+	list<int>:: iterator it = l.begin();
+	advance(it, first-1); //thứ tự: first
+	list<int>:: iterator it2 = l.begin();
+	advance(it2, last); //thứ tự: last +1
+	l.erase(it, it2);// xoá từ phần tử thứ tự first đến phần từ có thứ tự đứng trước last+1
+    return l;
+}
+
+std::vector<int> verifyFunction(std::vector<int> v, int first, int last)
+{   
+    list<int> l(v.begin(), v.end());
+    l = changeValue(l, first, last);
+    vector<int> vec(l.begin(), l.end());
+	return vec;
+}
