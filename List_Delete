@@ -26,3 +26,5 @@ vector<int> verifyFunction(vector<int> v) {
 	vector<int> ans(l.begin(), l.end());
 	return ans;
 }
+-------------------------------------------------------------
+//Hàm xóa từ số thứ first đến số thứ last
