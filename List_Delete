@@ -44,3 +44,24 @@ std::vector<int> verifyFunction(std::vector<int> v, int first, int last)
     vector<int> vec(l.begin(), l.end());
 	return vec;
 }
+
+-------------------------------------------------------------
+Để xóa tất cả phần tử có giá trị nào đó trong list ta dùng hàm remove() (độ phức tạp O(n)).
+
+Ví dụ như muốn xóa tất cả phần tử có giá trị x trong list a, ta làm như sau.
+
+	a.remove(x);
+---------------------
+//Hàm xóa phần tử n trong list
+
+list<int> removeElements(list<int> linkedList, int n) {
+	linkedList.remove(n);
+    return linkedList;
+}
+
+vector<int> verifyFunction(vector<int> v, int n) {
+	list<int> l(v.begin(), v.end());
+	l = removeElements(l, n);
+	vector<int> vec(l.begin(), l.end());
+	return vec;
+}
