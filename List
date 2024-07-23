@@ -60,3 +60,34 @@ vector<int> verifyFunction(int n)
 	vector<int> res(lst.begin(), lst.end());
 	return res;
 }
+------------------------------------------------------------------
+Để thêm một phần tử vào đầu list, ta có thể dùng hàm push_front() (Độ phức tạp O(1)).
+
+Ví dụ:
+
+	a.push_front(10); // Thêm giá trị 10 vào đầu list a
+Để thêm một phần tử vào cuối list, ta có thể dùng hàm push_back() (Độ phức tạp O(1)).
+
+Ví dụ:
+
+	a.push_back(10); // thêm giá trị 10 và cuối list a
+Đây chính là ưu điểm của list so với vector, trong khi vector không thể thêm phần tử vào đầu vector với độ phức tạp O(1), thì đối với list hoàn toàn có thể.
+
+----------------------
+//Hàm in dãy từ 1 -> n
+list<int> initList(int n)
+{
+	list<int> res;
+	for (int i = n; i >= 1; i--) {
+		res.push_front(i);
+	}
+	return res;
+}
+
+
+vector<int> verifyFunction(int n)
+{
+	list<int> l = initList(n);
+	vector<int> vec(l.begin(), l.end());
+	return vec;
+}
