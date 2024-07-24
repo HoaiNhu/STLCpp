@@ -63,3 +63,13 @@ int main() {
         return 0;
 
 }
+----------------------------------------------------------------------
+//Hàm tạo vector beautifull: các số xuất hiện duy nhất 1 lần
+int vectorBeautifull(std::vector<int> v)
+{
+    int count = 0;
+    set<int> s(v.begin(), v.end());
+
+    count = v.size() - s.size();
+    return count;
+}
