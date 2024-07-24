@@ -1,0 +1,12 @@
+string secondOrder(std::vector<int> arr) //vector{3,3,1,2,2}
+{
+    set<int> s(arr.begin(), arr.end()); //sao chép vector sang set và dã đc set lọc lại và sắp xếp tăng dần
+    if(s.size() == 1) return "NO";
+    else
+    {
+        set<int>:: iterator it = ++s.begin(); //nếu set nhiều hơn 1 phần tử thì mình tạo ra 1 con trỏ chỉ vào ô đầu tiên rồi + nó lên để nó sang ô thứ 2(ô cần lấy giá trị), lưu ý là ++s là cộng s trc rồi mới gán vào con trỏ it còn nếu ghi s++ thì gán it cho ô 1 trc rồi mới + sau thì sẽ sai
+        //hoặc set<int>:: iterator it = s.begin();
+        //s.advance(it, 1);
+        return to_string(*it); //xuất giá trị ô 2, do giá trị vector đang giữ là kiểu int nên phải dùng to_string  chuyển về string
+    }
+}
