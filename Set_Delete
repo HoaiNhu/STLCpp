@@ -1,0 +1,21 @@
+Để xóa một phần tư trong set ta dùng hàm erase()  (Độ phức tạp O(logN)).
+
+Hàm không có giá trị trả về, tham giá truyền vào có thể là một iterator trỏ đến phần tử cần xóa hoặc một giá trị cụ thể.
+
+Ví dụ:
+
+	//s = [1,2,3,4,5,6,7]
+	s.erase(s.begin()); // s = [1,2,3,4,5,6,7]
+	s.erase(3); // s = [1,2,4,5,6,7]
+Muốn xóa phần tử thử k trong set s ta làm như sau:
+
+	set <int>:: iterator it = s.begin(); // tạo iterator trỏ vào phần tử đầu trong s
+	advance(it,2); // it trỏ đến sô thứ 3 trong s.
+	s.erase(it);
+Ví dụ:
+
+	//s = {1,2,3,4,5}
+	set <int>:: iterator it = s.begin();
+	advance(it,3);
+	s.erase(it);
+	//s = {1,2,3,5}
