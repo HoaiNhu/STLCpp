@@ -10,3 +10,28 @@ string secondOrder(std::vector<int> arr) //vector{3,3,1,2,2}
         return to_string(*it); //xuất giá trị ô 2, do giá trị vector đang giữ là kiểu int nên phải dùng to_string  chuyển về string
     }
 }
+-------------------------------------------------
+Để kiểm tra một giá trị có tồn tại trong một set hay không, ta sẽ dùng hàm find() (Độ phức tạp O(logN)).
+
+Hàm s.find(x) sẽ trả về iterator trỏ đến phần tử mang giá trị x trong set s, nếu không tồn tại giá trị x trong s thì hàm sẽ trả về s.end().
+
+Ví dụ:
+
+	set <int>:: iterator it = s.find(x); // lấy con trỏ đang trỏ đến số có giá rị x
+	if (it == s.end()){ // nếu không tồn tại giá trị x trong set s
+		...
+	}else{ // có tồn tại giá trị x trong set s
+		...
+	}
+
+-----------------------------------
+//hàm tìm k 
+bool setFind(std::vector<int> arr, int k)
+{
+    std::set<int> s(arr.begin(), arr.end());
+    set<int>:: iterator it = s.find(k);
+    if(it == s.end()) return false;
+    else return true;
+    //return it != s.end;
+    //return (s.find(k) != end()) ?true : false;
+}
