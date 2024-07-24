@@ -1,0 +1,33 @@
+Ta sẽ thêm các phần tử của vector và một set, sau đó đưa ra số phần tử của set đó.
+
+//Hàm in số phần tử khác nhau của vector
+int differentNumbers(vector<int> inputVector )
+{
+	set<int> s;
+	for(int i = 0; i < inputVector.size(); i++)
+    {
+        s.insert(inputVector[i]);
+    }
+	return s.size();
+}
+
+------------------------
+//Hàm khác
+vector<int>a{5,4,4,3,3,2,1};
+
+    set<int>v(a.begin(), a.end()); // khởi tạo set với các giá trị của vector a
+// mặc định set là tăng dần và không nhận cùng giá trị nên set v sẽ là {1,2,3,4,5}
+    for(set<int>::iterator p = v.begin(); p != v.end(); p++)
+    {
+        cout << *p << " ";
+    }
+
+cout << endl;
+
+   
+    // chỉ cần viết thêm for duyệt từ phải qua trái là giảm dần
+
+    for(set<int>::reverse_iterator p = v.rbegin(); p != v.rend(); p++)
+    {
+        cout << *p << " ";
+    }
