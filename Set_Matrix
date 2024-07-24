@@ -1,0 +1,62 @@
+Khi duyệt các phần tử trong vector chúng ta phải làm quen với 1 kiểu dữ liệu là iterator, hiểu đơn giản thì đây là một con trỏ.
+
+Ta cũng cần chú ý là 2 phương thức là begin() và end(), hai phương thức này sẽ trả về con trỏ của phần tử thứ nhất và con trỏ ở sau phần tử cuối cùng.
+
+Để duyệt vector theo chiều thuận (từ trái qua phải) ta làm như sau:
+
+for (vector<int>::iterator it = a.begin(); it !=a.end(); it++)
+hoặc
+
+for (vector<int>::const_iterator it = a.cbegin(); it !=a.cend(); it++)
+Cách duyệt phía dưới cũng giống cách trên, nhưng với cách dưới, bạn không thể thay đổi giá trị mà con trỏ đang trỏ đến (Không thể gán *it=...).
+
+Để duyệt vector theo chiều nghịch (từ phải qua trái) ta làm như sau:
+
+	for (vector<int>::reverse_iterator it = a.rbegin(); it != a.rend(); it++)
+
+-----------------------------------------------------
+Trong C++, std::set là một container trong thư viện chuẩn (STL) được sử dụng để lưu trữ tập hợp các phần tử duy nhất theo thứ tự tăng dần.
+
+Phương thức count() của lớp std::set được sử dụng để đếm số lần xuất hiện của một phần tử cụ thể trong tập hợp. Cú pháp của phương thức này là:
+size_t count(const Key& key) const;
+Trong đó:
+
+Key là kiểu dữ liệu của phần tử trong set.
+key là giá trị của phần tử mà bạn muốn đếm số lần xuất hiện.
+Phương thức count() trả về số lần xuất hiện của phần tử có giá trị key trong set. Nếu phần tử không có trong set, nó sẽ trả về 0.
+
+Trong đoạn code mà bạn đã cung cấp, count(*it) được sử dụng để kiểm tra xem vector con hiện tại (*it) đã tồn tại trong tập hợp (set) hay chưa. 
+Nếu count(*it) trả về 0, có nghĩa là vector con chưa tồn tại trong tập hợp, và nó được thêm vào tập hợp và ma trận kết quả.
+
+------------------------
+//Hàm duyệt ma trận
+using namespace std;
+vector<vector<int>> uniqueRows(vector<vector<int>> matrix)
+{
+    set<vector<int>> s;
+    vector<vector<int>> res;
+    for(vector<vector<int>>:: iterator it = matrix.begin(); it != matrix.end(); it++ )
+    {
+        if(!s.count(*it))
+        {
+            s.insert(*it);
+            res.push_back(*it);
+        }
+    }
+    return res;
+}
+///Hàm khác
+std::vector<std::vector<int>> uniqueRows(std::vector<std::vector<int>> matrix)
+{
+vector<vector<int>> v;//tạo một vector lưu các vector kết quả
+set<vector<int>> s;//tạo một set lưu các vector không lặp lại
+for(const auto x:matrix){//duyệt ma trận
+if(!s.count(x)){//Hàm count kiểm tra xem x có phải là phần tử của s chưa
+//nếu có trả về true, nếu sai trả về false
+s.insert(x);//đưa dãy nhị phân chưa có trong set vào s
+v.push_back(x);//đưa giá trị đó vào vector kết quả
+}
+}
+return v;
+}
+
