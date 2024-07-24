@@ -19,3 +19,19 @@ Ví dụ:
 	advance(it,3);
 	s.erase(it);
 	//s = {1,2,3,5}
+-------------------------------------------
+//Hàm in phần tử có trong dãy 1 mà ko có trong dãy 2
+using namespace std;
+std::vector<std::string> mergeStringArr(std::vector<std::string> arr1, std::vector<std::string> arr2)
+{
+    set<string> s1(arr1.begin(), arr1.end()); //copy dãy arr1 vào set sau đó sắp xếp tăng dần
+    for(string x : arr2)
+    {
+        if(s1.find(x) != s1.end())
+        {
+            s1.erase(x);
+        }
+    }
+    vector<string> resSet(s1.begin(), s1.end());
+    return resSet;
+}
