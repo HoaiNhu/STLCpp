@@ -7,7 +7,7 @@ int cyclicShift(string word){
         char x = word.back(); //lấy kí tự cuối cùng của word gán cho x
         word.pop_back(); //Loại bỏ kí tự cuối cùng khỏi chuỗi word
         word.insert(word.begin() + 0, x); //chèn kí tự x vào đầu chuỗi word
-//string str(1,x);
+//string str(1,x); //tạo chuỗi vs 1 kí tự x
 //word(0,str); //insert at position 0
         s.insert(word);
     }
