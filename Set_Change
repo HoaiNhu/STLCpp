@@ -13,3 +13,61 @@ int cyclicShift(string word){
     }
 	return s.size();
 }
+----------------------------------------------------------
+//Hàm biến đổi để chuỗi có k kí tự khác nhau
+string diversity(string str, int k){
+	set<char> s(str.begin(), str.end());
+	if(str.length() < k) return "impossible";
+    else
+    {   
+        string res;
+        res = (s.size() >= k) ? "0" : to_string(k-s.size());
+        return res;
+    }
+}
+----------------------------------------------------
+//Hàm aramic
+int aramic(std::vector<std::string> words)
+{
+    set<string> s;
+    for(int i = 0; i < words.size(); i++) //duyệt từng từ trong danh sách words
+    {
+        set<char> c(words[i].begin(), words[i].end()); //tạo set chứa kí tự từng từ trong words
+        string s1(c.begin(), c.end()); //tạo chuỗi từ tập c
+        s.insert(s1);//thêm chuỗi s1 vào set s sẽ ko bị trùng chuỗi s1
+    }
+    return s.size();
+}
+
+-------------------------------
+//Hàm khác
+// func xử lý từng chữ trong mảng vd: aabab->ab, aa->a, ...
+string xuly(string word)
+{
+    set<char> s(word.begin(), word.end());
+    string res = "";
+    for (auto i : s)
+    {
+        res += i;
+    }
+    return res;
+}
+// Duyệt vector và xử dụng func trên xử lý từng chữ -> nhét vào set -> return size()
+int aramic(vector<string> words)
+{
+    for (vector<string>::iterator it = words.begin(); it != words.end(); it++)
+    {
+        *it = xuly(*it);
+    }
+    set<string> res(words.begin(), words.end());
+    return res.size();
+}
+
+------------------------------------------------------------------------
+//Hàm loại những từ trùng lặp trong danh sách và sắp xếp theo bảng chữ cái
+vector<string> getDistinctProducts(vector<string> products){
+	set<string> distinctProducts(products.begin(), products.end());//Tạo một tập hợp (set) chứa các chuỗi ký tự từ danh sách products. Tập hợp này sẽ tự động loại bỏ các sản phẩm trùng lặp và à sắp xếp chúng theo thứ tự bảng chữ cái.
+    vector<string> v(distinctProducts.begin(), distinctProducts.end());//ạo một vector mới từ tập hợp distinctProducts. Vector này chứa các sản phẩm duy nhất sau khi lọc.
+    return v;
+    
+}
