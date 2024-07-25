@@ -1,0 +1,13 @@
+//Hàm tìm số lần đổi của 1 từ = cách đổi chữ cái cuối lên đầu
+
+int cyclicShift(string word){
+	set<string> s;
+	for(int i = 0; i < word.size(); i++) //duyệt từng kí tự chuỗi word
+    {
+        char x = word.back(); //lấy kí tự cuối cùng của word gán cho x
+        word.pop_back(); //Loại bỏ kí tự cuối cùng khỏi chuỗi word
+        word.insert(word.begin() + 0, x); //chèn kí tự x vào đầu chuỗi word
+        s.insert(word);
+    }
+	return s.size();
+}
