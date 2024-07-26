@@ -53,6 +53,40 @@ std::vector<int> stackConcat(std::vector<int> a, std::vector<int> b)
   return v;
 }
 
+--------------------------------------------------------------------
+Đề bài
+
+Cho chiều cao của các thanh gỗ theo thứ tự từ trái qua phải, ứng với mỗi thanh gỗ bạn gần phải xác định khoảng cách tới thanh gỗ nằm bên trái và dài hơn nó là bao nhiêu.
+
+
+
+Ví dụ
+
+Chiều cao các thanh gỗ là arr = [100,80,60,70,60,75,85]
+
+Output sẽ có dạng stickSpan[arr] = [1,1,1,2,1,4,6]
+//Hàm 
+std::vector<int> stickSpan(std::vector<int> arr)
+{
+// mục đích dùng stack để lọc cái thanh bên trái
+stack<int> s; // lưu chỉ số các cây bên phải lớn hơn cây bên trái
+vector<int> v; // lưu kết quả khoảng cách;
+
+s.push(0); // ban đầu thêm chỉ số 0
+v.push_back(1); // thanh gỗ 0 có khoảng cách là 1
+
+for(int i = 1; i < arr.size(); i++) // duyệt từng thanh gỗ
+{
+while(!s.empty() && arr[s.top()] <= arr[i]) // nếu stack rỗng và thanh bên trái <đã lọc> nhỏ hơn thanh i
+s.pop();
+if (s.empty()) // kh có thanh bên trái nào dài hơn thanh i
+v.push_back(i+1); // nếu thanh i là thanh dài nhất thì i+1
+else // có thanh bên trái dài hơn thanh i
+v.push_back(i-s.top());
+s.push(i); // thêm vào stack để duyệt phần tử tiếp theo
+}
+return v;
+}
 
 
 
