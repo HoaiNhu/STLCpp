@@ -1,0 +1,48 @@
+//Hàm đảo chuỗi
+string reverseString(string s)
+{
+    string res;
+    stack<char> st;
+    for(int i = 0; i< s.length(); i++)
+    {
+        st.push(s[i]);
+    }
+    while(st.empty() == false){
+        res = res + st.top();
+        st.pop();
+    }
+    return res;
+}
+---------------------------
+//Hàm khác
+string reverseString(string s)
+{
+    for (int i = 0;i < int(s.size() / 2);i++)
+    swap(s[i],s[s.size() - i - 1]);
+    return s;
+}
+--------------------------------------------------
+//Hàm tìm chuỗi nhị phân của n
+Trong đoạn code st.push(n%2+'0');, khi chuyển đổi một số nguyên dương sang chuỗi nhị phân, chúng ta sẽ thực hiện phép chia lấy phần dư của n cho 2. Nếu kết quả phần dư là 1, ta sẽ đưa kí tự '1' vào stack, ngược lại nếu phần dư là 0, ta sẽ đưa kí tự '0' vào stack.
+
+Trong bảng mã ASCII, kí tự '0' có mã ASCII là 48, và kí tự '1' có mã ASCII là 49. Vì vậy, để đưa kí tự số 0 hoặc 1 vào stack, chúng ta cần chuyển đổi nó sang kí tự ASCII tương ứng bằng cách cộng với mã ASCII của kí tự '0'. Do đó, để đưa kí tự '0' hoặc '1' vào stack, chúng ta sử dụng biểu thức n%2+'0'.
+
+Ví dụ, nếu kết quả phép chia lấy phần dư của n cho 2 là 1, thì biểu thức n%2+'0' sẽ trả về giá trị 49 (tương ứng với kí tự '1' trong bảng mã ASCII), và nếu kết quả phép chia lấy phần dư của n cho 2 là 0, thì biểu thức n%2+'0' sẽ trả về giá trị 48 (tương ứng với kí tự '0' trong bảng mã ASCII).
+
+//---------------------------------
+std::string stackBin(int n)
+{
+    string s;
+    stack<char> st;
+    while(n > 0)
+    {
+        st.push(n % 2 + '0');
+        n /= 2;
+    }
+    while(!st.empty())
+    {
+        s = s + st.top();
+        st.pop();
+    }
+    return s;
+}
