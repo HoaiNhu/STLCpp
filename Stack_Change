@@ -52,3 +52,51 @@ string encodeString(string s)
     }
     return str;
 }
+---------------------------------------------------------
+//Hàm giải mã mã hóa
+void repeat(stack <char> &ms, string str, int num)
+{
+    string res = "";
+    for (int i = 0; i < num; i++)
+        for (auto x : str)
+        	ms.push(x);
+}
+
+std::string decodeString(std::string s)
+{
+    stack <char> ms;
+    for (auto x : s)
+    {
+        if (x == ']')
+        {
+            string chr; //lưu kí tự bên trong []
+            string ans = ""; //lưu kết quả
+            int num = 0, base = 1;
+            while (ms.top() != '[') //lấy ra kí tự trc [
+            {
+                chr = ms.top();
+                ms.pop();
+                ans = chr + ans;
+            }
+            ms.pop();
+            while (!ms.empty() && '0' <= ms.top() && ms.top() <= '9')
+            {
+                num += (ms.top() - '0')*base;
+                base *= 10;
+                ms.pop();
+            }
+            repeat(ms, ans, num);
+        }
+        else
+            ms.push(x);
+    }
+    string res = "";
+    while(!ms.empty())
+	{
+		char x = ms.top();
+    	res.push_back(x);
+    	ms.pop();
+	}
+	reverse(res.begin(), res.end());
+    return res;
+}
