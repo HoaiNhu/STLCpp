@@ -1,0 +1,62 @@
+//Hàm kiểm tra chuỗi gồm '{' và '}' có cân = ko
+
+int reversals(string exp)
+{
+    int kq = 0; //số  lần biến đổi
+    int test = 0;
+    if(exp.length() % 2 != 0) return -1;
+        for(int i = 0; i < exp.length(); i++)
+        {
+            if(exp[i] == '{')
+                test++;
+            else
+                test--;
+            if(test < 0)
+            {
+                kq++;
+                test += 2;
+            }
+
+        }
+    if(test == 0)
+        return kq;
+    return test/2 + kq;
+}
+
+-------------------------------------------------
+//Dùng stack
+int reversals(std::string exp)
+{
+    if(exp.length() % 2 != 0) return -1;
+    std::stack<char> st;
+    for(const auto c : exp)
+    {
+        if(c == '}')
+        {
+            if(!st.empty() && st.top() == '{')
+            {
+                st.pop();
+                continue;
+            }
+        }
+        st.push(c);
+    }
+
+    int ret = 0;
+
+    while( !st.empty())
+    {
+        const auto t1 = st.top();
+        st.pop();
+        const auto t2 = st.top();
+        st.pop();
+
+        if( t1 != t2) 
+        {
+            ret++;
+        }
+        ret++;
+    }
+
+    return ret;
+}
