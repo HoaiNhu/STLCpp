@@ -1,0 +1,34 @@
+//Kiểm tra tin nhắn điện thoại
+using namespace std;
+
+std::vector<int> messagesPhone(std::vector<int> a, int k)
+{
+    queue<int> q; //lưu danh sách tin nhắn đến
+    vector<bool> b(1001, false); //vector b size 1001. mỗi phần tử tương ứng vs 1 ID tin nhắn (từ 0 > 1000). ban đầu tất cả tin nhắn đều dc đánh dấu = false
+    for(int i = 0; i < a.size(); i++) //duyệt qua từng tin nhắn trong a
+    {
+        if(!b[a[i]]) //chưa gặp ID của a[i] thì 
+        {
+            if(q.size() < k) 
+            {
+                b[a[i]] = true; //đánh dấu tin nhắn đã gặp
+                q.push(a[i]); /thêm vào hàng đợi
+            }
+            else //hàng đợi đầy
+            {
+                b[q.front()] = false; //tin nhắn cũ nhất đánh dấu lại chưa gặp
+                b[a[i]] = true; //tin nhắn mới nhất đánh dấu đã gặp
+                q.push(a[i]);
+                q.pop();
+            }
+        }
+    }
+
+    vector<int>d;
+    while(!q.empty())
+    {
+        d.push_back(q.front());
+        q.pop();
+    }
+    return d;
+}
