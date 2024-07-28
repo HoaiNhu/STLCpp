@@ -1,0 +1,17 @@
+//Hàm chuyển thập phân thành nhị phân
+//(,) sau mỗi lần chạy, (q/) chứa chuỗi kí tự hiện tại
+vector<string> generateBinary(int n) //n=5
+{
+    vector<string> res; //1, 10, 11, 100, 101
+	queue<string>q; //1 /1, 10, 11/ 10, 11, 100, 101/ 11, 100, 101, 110, 111/ 100, 101, 11o, 111/ 100, 101, 110, 111, 1000, 1001/ 101, 110, 111, 1000, 1001, 1010, 1011
+	q.push("1");
+	while(n--){ //neu n-- != 0
+        q.push(q.front() + "0"); 
+        //10, 100, 110, 1000, 1010
+        q.push(q.front() + "1");
+        //11, 101, 111, 1001, 1011
+        res.push_back(q.front()); //1, 10, 11, 100, 101
+        q.pop();                  //1, 10, 11, 100, 101 
+	}
+    return res;
+}
