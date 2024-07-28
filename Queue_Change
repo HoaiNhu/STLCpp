@@ -15,3 +15,44 @@ vector<string> generateBinary(int n) //n=5
 	}
     return res;
 }
+
+//Hàm tìm dãy số siêu nguyên tố(số nguyên tố bỏ từng số cuối vẫn là số nguyên tố)
+
+
+bool isPrime(int a)
+{
+    if(a < 2) return false;
+    for(int i = 2; i <= sqrt(a); i++)
+    {
+        if(a % i == 0) return false;
+    }
+    return true;
+}
+
+std::vector<int> superPrimeNumber(int n)
+{
+    vector<int> v; //lưu kết quả
+    queue<int> q;
+    for(int i = 2; i <=n, i < 10; i++)
+    {
+        if(isPrime(i))
+        {
+            q.push(i);
+        }
+    }
+    while(!q.empty())
+    {
+        for(int i = 1; i <= 9; i++)
+        {
+            int k = q.front()*10 + i;
+            if(k <= n && isPrime(k))
+            {
+                q.push(k);
+            }
+        }
+        v.push_back(q.front());
+        q.pop();
+    }
+    return v;
+}
+
