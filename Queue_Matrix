@@ -1,0 +1,60 @@
+Cho ma trận các số chỉ chứa giá trị 0 và 1. Hai phần tử được coi là cùng một cụm khi 2 phần tử này có chung cạnh và đều có giá trị bằng 1. Các phần tử có giá trị bằng 0 không được coi là một cụm. Bạn hãy viết hàm đếm số cụm của một ma trận cho trước.
+
+Ví dụ:
+
+Cho matrix =
+[[1,0,0,1,1],
+ [0,1,1,1,1],
+ [1,1,0,0,0],
+ [0,0,1,0,1]]
+
+Ouput sẽ có dạng cluster(matrix) = 4
+
+//Hàm theo BFS
+int cluster(vector<vector<int>> matrix)
+{
+    queue<pair<int,int>> pos;
+    int count = 0;
+    for(int i = 0; i < matrix.size(); i++)//hàng ứng vs y
+    {
+        for(int j = 0; j < matrix[i].size(); j++) //cột ứng vs x
+        {
+            if(matrix[i][j] == 1)
+            {
+                count++;
+                matrix[i][j] = 0;
+                pos.push({j, i});
+            }
+            while(!pos.empty())
+            {
+                int dX[] = {0, 1, 0, -1};
+                int dY[] = {-1, 0, 1, 0};
+                for(int k = 0; k < 4; k++)
+                {
+                    int x = pos.front().first + dX[k];
+                    int y = pos.front().second + dY[k];
+                    if(x >= 0)
+                    {
+                        if(x < matrix[i].size())
+                        {
+                            if(y >= 0)
+                            {
+                                if(y < matrix.size())
+                                {
+                                    if(matrix[y][x] == 1)
+                                    {
+                                        matrix[y][x] = 0;
+                                        pos.push({x, y});
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                pos.pop();
+            }
+            
+        }
+    } 
+    return count;
+}
