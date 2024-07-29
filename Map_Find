@@ -1,0 +1,25 @@
+//Hàm greaterString
+vector<string> greaterString(vector<string> arr1, vector<string> arr2)
+{
+    map<string, bool> mp;
+    for(auto x : arr1)
+    {
+        mp[x] = 1; //key=string và value = true or false
+    }
+    vector<string> v; //vector trả kết quả
+    for(auto y : arr2)
+    {
+        //kiểm tra xem chuỗi này có tồn tại hay ko
+        if(mp.upper_bound(y) != mp.end()) //trỏ vào vị trí lớn hơn key y hiện tại theo từ điển mà chuỗi này tồn tại
+        {
+            auto str = mp.upper_bound(y); //gắn str = chuỗi lớn hơn chuỗi y theo từ điển và gần nhất
+            v.push_back(str->first); //thêm kiểm datatype1 của str vào vector
+        }
+        else 
+        {
+            v.push_back("-1");
+        }
+    }
+
+    return v;
+}
