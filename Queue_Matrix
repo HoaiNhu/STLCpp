@@ -58,3 +58,91 @@ int cluster(vector<vector<int>> matrix)
     } 
     return count;
 }
+
+---------------------------------------------------------------------------
+Cho một ma trận trong đó mỗi ô trong ma trận có thể có các giá trị 0, 1 hoặc 2 có nghĩa sau:
+
+0: Là một ô trống.
+1: Là một quả cam tươi.
+2: Là một quả cam bị hỏng.
+Chúng ta phải xác định thời gian tối thiểu mà  tất cả các quả cam bị hỏng. Một quả cam hỏng ở chỉ số [i, j] có thể làm hỏng quả cam tươi khác ở các chỉ số [i-1, j], [i + 1, j], [i, j-1], [i, j + 1] (lên , xuống, trái và phải). Nếu không thể bị hỏng tất cả quả cam thì trả về -1.
+
+Ví dụ:
+
+Với matrix = [
+[2, 1, 0, 2, 1],
+[1, 0, 1, 2, 1],
+[1, 0, 0, 2, 1]].
+Thì đầu ra có dạng  rotOrange(matrix) = 2
+
+Với matrix = [
+[2, 1, 0, 2, 1],
+[0, 0, 1, 2, 1],
+[1, 0, 0, 2, 1]].
+Thì đầu ra có dạng rotOrange(matrix) = -1
+
+//Giải
+
+int rotOrange(std::vector<std::vector<int>> matrix)
+{
+    queue <int> x,y;  //tạo 2 hàng đợi lưu tọa độ quả cam bị hỏng
+  	int now = 0, next = 0, pas = 0, res = 0;
+    // now: Số lượng cam hỏng hiện tại trong hàng đợi.
+    // next: Số lượng cam trong lượt tiếp theo.
+    // pas: Số lượt đã đi qua.
+    // res: Số lượng cam tươi còn lại
+    int ans = 0; 
+    for (int  i = 0; i < matrix.size(); i++)
+    {
+        for (int j = 0; j < matrix[i].size(); j++)
+        {
+            if(matrix[i][j] == 2) //nếu cam hỏng
+            {
+                x.push(i); //thêm tọa độ x
+                y.push(j); //thêm tọa độ y
+                now ++; //tăng số cam hỏng
+                matrix[i][j] = 0;
+            }
+            else if (matrix[i][j] == 1)
+            	res ++;
+    	}
+	}
+    while (!x.empty())
+    {
+        now--;
+        int o[] = {0, 1, 0, -1}; //hướng di chuyển phải, trái
+        int p[] = {1,0, -1 ,0}; //hướng di chuyển trên dưới
+        for (int d = 0; d < 4; d++)
+        {
+            //kiểm tra và xử lý các ô lân cận có thể bị hỏng
+            if( x.front()+o[d] >= 0 && x.front()+o[d] < matrix.size() &&  y.front()+p[d] >= 0 && y.front()+p[d] < matrix[1].size() && matrix[x.front()+o[d]][y.front()+p[d]] == 1 )
+            {
+                // x.front() + o[d] là chỉ số hàng mới (dựa trên chỉ số hàng của ô hiện tại và giá trị trong mảng o).
+                // y.front() + p[d] là chỉ số cột mới (dựa trên chỉ số cột của ô hiện tại và giá trị trong mảng p).
+                // matrix.size() là số hàng của ma trận.
+                // matrix[1].size() là số cột của ma trận (giả sử ma trận có ít nhất 1 hàng).
+                //matrix[x.front() + o[d]][y.front() + p[d]] == 1: Điều kiện này kiểm tra xem ô lân cận có phải là quả cam tươi không.
+                matrix[x.front()+o[d]][y.front()+p[d]] = 0; //Đặt giá trị của ô lân cận thành 0 (đánh dấu là đã bị hỏng).
+                x.push(x.front()+o[d]); //Thêm tọa độ của ô lân cận vào hàng đợi x và y.
+                y.push(y.front()+p[d]); 
+                matrix[x.front()+o[d]][y.front()+p[d]]= 0; //Đặt giá trị của ô lân cận thành 0 (đánh dấu là đã bị hỏng
+                res --; //Giảm biến res đi 1 (số lượng quả cam tươi còn lại).
+                next++;
+            }
+        }
+        if(now == 0 && next > 0) //ktra queue x đã rỗng và có ô lân cận mới ko
+        {
+            now = next; //tiếp tục duyệt các ô lân cận mới
+            next = 0; //cbi duyệt hàng đợi tiếp theo
+            pas ++; //đếm số lần duyệt qua hàng đợi
+        }
+        x.pop();
+        y.pop();
+        
+    }
+    if (res == 0){
+        return pas;
+    } else {
+        return -1;
+    } 
+}
