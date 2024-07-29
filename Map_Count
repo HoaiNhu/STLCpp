@@ -1,0 +1,26 @@
+//Hàm đếm phần tử trong string
+std::vector<string> countChar(string s)
+{
+    vector<string> v;
+    map<string, int> m;
+    string a;
+    for(int i = 0; i < s.length(); i++)
+    {
+        a = s[i];
+        m[a]++; //nếu như gặp kí tự nào đó trung thì nó tự động tần xuất của kí tự đó lên
+    }
+//or
+ for (auto x : s)
+    {
+        mp[x]++;
+    }
+//
+
+    for(auto x : m)
+    {
+        string ans = "";
+        ans = x.first + " " + to_string(x.second);
+        v.push_back(ans);
+    }
+    return v;
+}
