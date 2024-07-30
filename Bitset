@@ -1,0 +1,54 @@
+Giới thiệu về bitset.
+Một bitset lưu trữ các bit (các phần tử chỉ có hai giá trị có thể: 0 hoặc 1, true hoặc false, ...).
+
+Bitset là  một mảng các phần tử bool, nhưng được tối ưu hóa để phân bổ không gian, nói chung, mỗi phần tử chỉ chiếm một bit (mà trên hầu hết các hệ thống, ít hơn tám lần so với loại phần tử nhỏ nhất là char).
+
+Mỗi vị trí bit có thể được truy cập riêng lẻ: ví dụ, đối với một bit đã cho có tên foo, biểu thức foo[3] truy cập bit thứ tư của nó (được tính từ 0 bắt đầu từ phải qua trái), giống như một mảng thông thường truy cập các phần tử của nó.
+
+Các bit có tính năng có thể được xây dựng từ và chuyển đổi thành cả giá trị nguyên và chuỗi nhị phân.
+
+Kích thước của một bitset được cố định tại thời gian biên dịch (được xác định bởi tham số mẫu của nó). bitset sẽ nhận giá trị cố định mà nó đã biết trước mà không thông qua bất kỳ biến nào.
+
+Lý thuyết:
+Khai báo thư viện:
+
+#include<bitset>
+Khai báo bit set:
+
+	bitset<4> foo; // foo = 0000
+	bitset<4> foo2(string("1001")); // foo2 =1001
+	bitset<4> foo3(7); // foo3 = 0111
+Các hàm cơ bản:
+
+size(): trả về kích thước của bitset.
+count(): Đếm các bit 1 (hoặc rả về tổng tất cả các bit).
+test(): trả về giá trị true hoặc false tại một bit.
+any(): kiểm tra có bit 1 trong setbit hay không, trả về true nếu có và ngược lại.
+none(): kiểm tra một bitset có phải toàn bit 0 hay không, trả về true nếu có và ngược lại.
+all(): kiểm tra một bitset có phải toàn bit 1 hay không, trả về true nếu có và ngược lại.
+Thao tác trên bitset:
+
+set(): Chuyển bit tại ví trí chỉ định thành bit mong muốn, mặc định chuyển thành bit 1.
+  std::bitset<4> foo; //foo = 0000
+  foo.set();    // foo = 1111
+  foo.set(1,0);   // foo = 1101
+  foo.set(2,0); // foo = 1001
+  foo.set(1)   // foo = 1011​
+reset(): Chuyển bit chỉ định hoặc tất cả các bit thành bit 0.
+	std::bitset<4> foo; 
+	foo = 7; // foo = 0111
+	foo.reset(1); // foo = 0101
+	foo.reset(); // foo = 0000​
+flip(): Chuyển bit chỉ định hoặc tất cả các bit thành bit khác ( bit 0 thành bit 1 và ngược lại.
+Các hàm chuyển đổi:
+
+to_string(): Chuyển bitset về dạng chuỗi nhị phân.
+	std::bitset<4> foo; 
+	foo = 7;
+	cout << "String = " << foo.to_string();
+// Kết quả là: String = 0111​
+to_ulong(): Chuyển bitset về dạng số nguyên.
+	std::bitset<4> foo(string("0111"));
+	cout << foo.to_ulong();
+// kết quả là: 7​
+to_ullong(): Tương tự to_ulong() (Chỉ hỗ trợ cho C++ 11).
