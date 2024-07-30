@@ -1,0 +1,6 @@
+char convertChar(char ch)
+{
+    bitset<7> foo(ch);
+    foo.flip();
+    return char(foo.to_ulong());
+}
