@@ -1,0 +1,7 @@
+//Hamf chuyeenr 2^n
+long long bitsetFunction(int n)
+{
+    std::bitset<20> foo;
+    foo[n] = 1;
+    return foo.to_ulong();
+}
